@@ -1,0 +1,9 @@
+2024.2.1
+
+q1 : class SendEaiFile에서 파일위치 EAI_FILE_PATH    = props.getProperty("EAI_FILE_PATH");
+
+EAI_FILE_PATH = C:/KCMS/send_file/eai
+
+## EAI 관련 설정파일
+EAI_CFG_FILE  = C:/EAI2/DAQ/config/cfg/PZMZA04L_FS01_YJ.xml
+
