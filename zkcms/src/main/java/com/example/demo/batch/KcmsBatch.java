@@ -28,7 +28,7 @@ public class KcmsBatch implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		init();
+		init(); //firstcommit
 		int polling_time_sms = (int) (Double.parseDouble(props.getProperty("POLLING.TIME.SMS")) * 60 * 1000); // 밀리 sec
 																												// 단위
 		int polling_time_eai = (int) (Double.parseDouble(props.getProperty("POLLING.TIME.EAI")) * 60 * 1000); // 밀리 sec
@@ -277,5 +277,4 @@ public class KcmsBatch implements CommandLineRunner {
 
 	  } // end inner class  RunTask_EAI
 }
-
 
