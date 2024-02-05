@@ -10,3 +10,67 @@ EAI_CFG_FILE  = C:/EAI2/DAQ/config/cfg/PZMZA04L_FS01_YJ.xml
 
 각 오라클 서버의 
 
+
+            
+ 2024 02 05
+            
+      ** SendSmsFile.java
+      
+      1. config.properties에서  FTP_PATH = props.getProperty("SMS.FTP.PATH");의 갑이 누락되었음
+      
+      
+### SMS Server 정보(FTP)
+SMS.FTP.IP    = sms.posco.co.kr
+SMS.FTP.USER  = posco_imc
+SMS.FTP.PWD   = posco_imc06#)
+SMS.FTP.PATH  = 
+      
+      의 값을 정하여야 함.
+      
+      
+      2. SendEaiFile 에서 
+      
+      EAI_CFG_FILE     = null; // EAI CFG 파일  없음
+      ## EAI 관련 설정파일
+EAI_CFG_FILE  = C:/EAI2/DAQ/config/cfg/PZMZA04L_FS01_YJ.xml 
+
+194줄   EAIHandler eaiHandler = null;
+230줄   eaiHandler  = new EAIHandler();   
+231줄   returnValue = eaiHandler.initialize(EAI_CFG_FILE);
+           
+           //*****************FILE 전송 ********************
+           returnValue = eaiHandler.sendFile( INTERFACE_ID, EAI_FILE_PATH, file_name);
+          
+          
+       3. SendMail.java
+       
+       
+### 기존  Mail Server 정보
+MAIL.SMTP.HOST = mailrelay.posco.co.kr
+MAIL.TRANSPORT.PROTOCOL = smtp
+MAIL.SMTP.PORT = 25
+MAIL.MIME.TYPE = text/html
+MAIL.CHARSET   = euc-kr
+
+구글 smtp server 프로퍼티
+
+설정을 위한 참고 사이트
+https://velog.io/@max9106/Spring-Boot-Gmail-SMTP-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0%EB%A9%94%EC%9D%BC%EB%B3%B4%EB%82%B4%EA%B8%B0
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username= ~~~@gmail.com // gmail 계정
+spring.mail.password=qcyuiqxjmjtgosqh // 앱 비밀번호
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.timeout=5000
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+
+
+SendMail.java
+
+   // 등록된 관리자 건수 만큼 메세지 생성--db에서 관리해야함       
+           
+           
+
+
+

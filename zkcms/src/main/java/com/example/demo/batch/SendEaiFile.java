@@ -238,7 +238,9 @@ public class SendEaiFile  {
              return  false;
            }
     
-           returnValue = -1;                        
+           returnValue = -1; 
+           
+           //*****************FILE 전송 ********************
            returnValue = eaiHandler.sendFile( INTERFACE_ID, EAI_FILE_PATH, file_name);
           
          

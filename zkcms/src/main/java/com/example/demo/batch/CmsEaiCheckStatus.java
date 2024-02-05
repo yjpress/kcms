@@ -55,8 +55,8 @@ public class CmsEaiCheckStatus  {
 	      cms_sb.append("                MAX(DECODE(PARAM_NAME , 'TEMP' , 'TT' , 'VV')) AS  DATA_TYPE ,                  ");
 	      cms_sb.append("                MIN(DECODE(ETATMAINT  , 'RAS'  , 'NORML' , 'ALAM'))  AS  STATUS                 ");
 	      cms_sb.append("          FROM (                                                               ");
-	      cms_sb.append("             SELECT EQ.IDX_EQUIPEMENT, EQ.EQUIP_CODE ,                         ");
-	      cms_sb.append("                    PM.IDX_POINT     , PR.SENSOR_NO ,                          ");
+	      cms_sb.append("             SELECT EQ.IDX_EQUIPEMENT, KE.EQUIP_CODE ,                         ");
+	      cms_sb.append("                    PM.IDX_POINT     , KP.SENSOR_NO ,                          ");
 	      cms_sb.append("                    HP.IDX_PARAMETRE , HP.DH_MESURE ,                          ");
 	      cms_sb.append("                    AL.ETATMAINT,                                              ");
 	      cms_sb.append("                    ROUND(HT.VALEUR, 2) * 100           AS VALEUR ,            ");
@@ -77,7 +77,7 @@ public class CmsEaiCheckStatus  {
 	      cms_sb.append("                       AND  DH_MESURE > SYSDATE - 30 ");
 	      cms_sb.append("                     GROUP BY HT.IDX_PARAMETRE       ");         
 	      cms_sb.append("                    ) HP ,                           "); // EAI_SIBO_LOG 테이블에서  직접 조회로 변경함 2013.11.30
-	      cms_sb.append("                    EQUIPEMENT  EQ , POINT_MESURE  PM ,            ");
+	      cms_sb.append("                    EQUIPEMENT  EQ , KCMS_EQUIPEMENT KE, KCMS_PARAMETRE KP, POINT_MESURE  PM ,            ");
 	      cms_sb.append("                    PARAMETRE   PR , HT_PARAMETRE  HT ,            ");
 	      cms_sb.append("                    ALARME      AL                                 ");
 	      cms_sb.append("             WHERE  EQ.IDX_EQUIPEMENT = PM.IDX_EQUIPEMENT          ");
