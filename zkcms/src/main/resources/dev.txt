@@ -7,3 +7,6 @@ EAI_FILE_PATH = C:/KCMS/send_file/eai
 ## EAI 관련 설정파일
 EAI_CFG_FILE  = C:/EAI2/DAQ/config/cfg/PZMZA04L_FS01_YJ.xml
 
+
+각 오라클 서버의 
+
