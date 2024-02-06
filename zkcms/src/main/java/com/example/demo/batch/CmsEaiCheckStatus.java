@@ -86,6 +86,11 @@ public class CmsEaiCheckStatus  {
 	      cms_sb.append("               AND  HT.IDX_PARAMETRE  = HP.IDX_PARAMETRE           ");
 	      cms_sb.append("               AND  HT.DH_MESURE      = HP.DH_MESURE               ");
 	      cms_sb.append("               AND  AL.IDX_PARAMETRE  = HT.IDX_PARAMETRE           ");
+	      
+	      cms_sb.append("               AND  EQ.IDX_EQUIPEMENT  =  KE.IDX_EQUIPEMENT        ");
+	      cms_sb.append("               AND  PR.IDX_PARAMETRE  = KP.IDX_PARAMETRE           ");
+	      
+	      
           cms_sb.append("          )    ");
           cms_sb.append("            GROUP BY  EQUIP_CODE, SENSOR_NO, IDX_POINT, DECODE(PARAM_NAME, 'TEMP', 'TT', 'VV') "); // 온도, 진동 별  gropu by 추가 
           cms_sb.append("    ) TAB      ");
@@ -195,12 +200,12 @@ public class CmsEaiCheckStatus  {
             cms_sb.append("               AND LENGTH(LIST_ERREURS)  > 25         ");
             cms_sb.append("              GROUP BY IDX_ELEMENT_CAT, LIST_ERREURS  ");
             cms_sb.append("          ) TAB2 ,                                    "); //-- EVENEMENTS 테이블은 센서 이상일 경우 지속적으로   값이 insert 됨  mvx , channel 값 확인 
-            cms_sb.append("          ( SELECT  DISTINCT  EQ.EQUIP_CODE, PM.IDX_POINT, PR.SENSOR_NO, PR.IDX_ELEMENT_CAT, PR.CHANNEL_NO, ");
+            cms_sb.append("          ( SELECT  DISTINCT  KE.EQUIP_CODE, PM.IDX_POINT, KP.SENSOR_NO, PR.IDX_ELEMENT_CAT, KP.CHANNEL_NO, ");
             cms_sb.append("                    CASE   ");                                                    
             cms_sb.append("                      WHEN  PR.NOM = 'Velocity' OR  PR.NOM = 'Acceleration' THEN 'VV' "); //-- 진동
             cms_sb.append("                      WHEN  PR.NOM = 'Temperature'  THEN 'TT'                         "); //-- 온도
             cms_sb.append("                    END  AS  DATA_TYPE                              ");
-            cms_sb.append("              FROM  EQUIPEMENT  EQ, POINT_MESURE PM, PARAMETRE  PR  ");
+            cms_sb.append("              FROM  EQUIPEMENT  EQ, POINT_MESURE PM, PARAMETRE  PR, KCMS_EQUIPEMENT  KE , KCMS_PARAMETRE  KP  ");
             cms_sb.append("             WHERE  EQ.IDX_EQUIPEMENT = PM.IDX_EQUIPEMENT           ");
             cms_sb.append("               AND  PM.IDX_POINT      = PR.IDX_POINT                ");
             cms_sb.append("               AND  ( PR.NOM  = 'Velocity' OR PR.NOM = 'Acceleration' OR PR.NOM = 'Temperature' ) ");
@@ -209,6 +214,10 @@ public class CmsEaiCheckStatus  {
             cms_sb.append("    AND  TAB1.CHANNEL_NO = TAB2.CHANNEL_NO       ");
             cms_sb.append("    AND  TAB3.IDX_ELEMENT_CAT = TAB1.MVX_NO      ");
             cms_sb.append("    AND  TAB3.CHANNEL_NO      = TAB1.CHANNEL_NO  ");
+            
+            cms_sb.append("    AND  EQ.IDX_EQUIPEMENT = KE.IDX_EQUIPEMENT  ");
+            cms_sb.append("    AND  PR.IDX_PARAMETRE = KP.IDX_PARAMETRE  ");
+            
             cms_sb.append("  ORDER BY MVX_NO, CHANNEL_NO ASC                ");
          
             
