@@ -209,15 +209,17 @@ public class CmsEaiCheckStatus  {
             cms_sb.append("             WHERE  EQ.IDX_EQUIPEMENT = PM.IDX_EQUIPEMENT           ");
             cms_sb.append("               AND  PM.IDX_POINT      = PR.IDX_POINT                ");
             cms_sb.append("               AND  ( PR.NOM  = 'Velocity' OR PR.NOM = 'Acceleration' OR PR.NOM = 'Temperature' ) ");
+           
+            cms_sb.append("               AND  EQ.IDX_EQUIPEMENT = KE.IDX_EQUIPEMENT  ");
+            cms_sb.append("               AND  PR.IDX_PARAMETRE = KP.IDX_PARAMETRE  ");
+                       
             cms_sb.append("          ) TAB3                                 ");
             cms_sb.append("  WHERE  TAB1.MVX_NO     = TAB2.IDX_ELEMENT_CAT  ");
             cms_sb.append("    AND  TAB1.CHANNEL_NO = TAB2.CHANNEL_NO       ");
             cms_sb.append("    AND  TAB3.IDX_ELEMENT_CAT = TAB1.MVX_NO      ");
             cms_sb.append("    AND  TAB3.CHANNEL_NO      = TAB1.CHANNEL_NO  ");
             
-            cms_sb.append("    AND  EQ.IDX_EQUIPEMENT = KE.IDX_EQUIPEMENT  ");
-            cms_sb.append("    AND  PR.IDX_PARAMETRE = KP.IDX_PARAMETRE  ");
-            
+           
             cms_sb.append("  ORDER BY MVX_NO, CHANNEL_NO ASC                ");
          
             
