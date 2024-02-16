@@ -24,7 +24,7 @@ public class KcmsBatch{
 	static RunTask_EAI task_eai = null;
 	static ArrayList<HashMap<Object, Object>> status_list = null;
 	static String cms_home_path = "C:/KCMS";// "C:/KCMS";
-	static boolean isSuccess = true; // 성공 여부
+	static boolean isSuccess = true; // 성공 여부 test
 	
 	//@Override
 	public void run3(String... args) throws Exception {
