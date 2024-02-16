@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.batch.CmsUtil;
 //import com.example.demo.batch.KcmsBatch;
 
-@RestController
+//@RestController
 public class BatchController {
 	//@RequestMapping("/")
     public String hello() {

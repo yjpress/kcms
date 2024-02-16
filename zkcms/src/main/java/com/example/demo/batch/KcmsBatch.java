@@ -15,7 +15,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KcmsBatch implements CommandLineRunner {
+public class KcmsBatch{ 
+//implements CommandLineRunner  {
 
 	static Properties props = null;
 	static Timer timer = null;
@@ -25,16 +26,13 @@ public class KcmsBatch implements CommandLineRunner {
 	static String cms_home_path = "C:/KCMS";// "C:/KCMS";
 	static boolean isSuccess = true; // 성공 여부
 	
-	@Override
-	public void run(String... args) throws Exception {
+	//@Override
+	public void run3(String... args) throws Exception {
 		init(); // firstcommit
 		
-		int polling_time_sms = 5000; // 밀리 sec
-		int polling_time_eai = 5000; // 밀리 sec
-			
-//		int polling_time_sms = (int) (Double.parseDouble(props.getProperty("POLLING.TIME.SMS")) * 60 * 1000); // 밀리 sec
-//		int polling_time_eai = (int) (Double.parseDouble(props.getProperty("POLLING.TIME.EAI")) * 60 * 1000); // 밀리 sec
-//		// 단위v
+		int polling_time_sms = (int) (Double.parseDouble(props.getProperty("POLLING.TIME.SMS")) * 60 * 1000); // 밀리 sec
+		int polling_time_eai = (int) (Double.parseDouble(props.getProperty("POLLING.TIME.EAI")) * 60 * 1000); // 밀리 sec
+		// 단위v
 
 		timer = new Timer();
 		task_sms = new RunTask_SMS(); // SMS & MAIL
