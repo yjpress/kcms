@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
 /**
  * <PRE>
  * 파일명 : SendMail.java
- * 기능 : MAIL 전송 기능.
+ * 기능 : MAIL 전송 기능. ....
  * 설명 : CMS 상태정보를   담당자에게 MAIL 전송 한다.
  * 최종수정자 : 정영록
  * 최종수정일자 : 2010-12-01
